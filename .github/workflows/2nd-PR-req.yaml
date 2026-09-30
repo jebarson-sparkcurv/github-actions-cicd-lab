@@ -1,0 +1,29 @@
+name: Create Developer PR
+
+on:
+  push:
+    branches:
+      - developer
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create \
+            --base main \
+            --head developer \
+            --title "Developer → Main" \
+            --body "Automatically created PR from developer branch." \
+            --reviewer jeberson1243
