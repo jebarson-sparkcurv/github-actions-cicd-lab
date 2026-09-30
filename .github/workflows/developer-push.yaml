@@ -1,0 +1,14 @@
+name: Developer Push Test
+
+on:
+  push:
+    branches:
+      - developer
+
+jobs:
+  test-trigger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirm trigger
+        run: echo "Developer branch push triggered GitHub Actions!"
